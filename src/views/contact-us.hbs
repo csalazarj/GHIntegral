@@ -1,0 +1,200 @@
+<!--FOMULARIO-->
+<section id="contact" class=" mt-5 pt-5">
+
+    <article class="container-fluid">
+        <div class="row my-5">
+            <div class="col-12 text-center bg-primary text-white py-3 text-uppercase">
+                <h1>contactanos</h1>
+            </div>
+        </div>
+    </article>
+
+    <form action="/mesage.php" method="POST">
+        <div class="container text-primary">
+            <div class="row">
+                <div class="col-md-6 ">
+
+                    <label class="h6 mt-3" for="username">Nombre</label>
+                    <div>
+                        <input id="username" name="username" type="text" class="form-control shadow contact-input-text"
+                            required>
+                    </div>
+
+                    <label class="h6 mt-3" for="secondname">Apellidos</label>
+                    <div>
+                        <input id="secondname" name="secondname" type="text"
+                            class="form-control shadow contact-input-text" required>
+                    </div>
+                </div>
+
+                <div class="col-md-6 d-md-block">
+
+                    <label class="h6 mt-3" for="telephone">Teléfono</label>
+                    <div>
+                        <input id="telephone" name="telephone" type="text"
+                            class="form-control shadow contact-input-text" required>
+                    </div>
+
+                    <label class="h6 mt-3" for="email">Correo</label>
+                    <div>
+                        <input id="email" name="email" type="text" class="form-control shadow contact-input-text"
+                            required>
+                    </div>
+                </div>
+            </div>
+
+            <h6 class="mt-5">Selecciones los servicios que desea consultar: </h6>
+
+            <div class="row my-3 text-capitalize">
+
+                <div class="col-12 col-md-6">
+                    <div class="form-check text-capitalize">
+                        <input class="form-check-input" type="checkbox" id="Checkbox1" value="option1">
+                        <label class="form-check-label" for="Checkbox1">Seguridad Y Salud en el Trabajo</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox2" value="option2">
+                        <label class="form-check-label" for="Checkbox2">plan estratégico de seguridad
+                            vial</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox3" value="option3">
+                        <label class="form-check-label" for="Checkbox3">baterias de riesgo psicosocial</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox4" value="option3">
+                        <label class="form-check-label" for="Checkbox4">auditorias en SG-SST</label>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox5" value="option1">
+                        <label class="form-check-label" for="Checkbox5">selección de personal</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox6" value="option2">
+                        <label class="form-check-label" for="Checkbox6">asesoria mensual y/o auditoria en
+                            gestion
+                            humana</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox7" value="option3">
+                        <label class="form-check-label" for="Checkbox7">asistencia jurídica</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox8" value="option3">
+                        <label class="form-check-label" for="Checkbox8">asistencia contable</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <label for="usermessage" class="h6 mt-3">Mensaje:</label>
+                    <textarea class="shadow" id="usermessage" cols="30" rows="10"></textarea>
+                </div>
+
+                <div class="col-12 text-center mt-3">
+                    <input class="btn btn-primary" type="submit" value="Enviar">
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <!--form viejo-->
+    <!-- <form action="/message.php" method="POST" class="contact-form">
+            <div class="contact-row">
+                <div class="contact-column left">
+                    <div>
+                        <label for="username">Nombre</label>
+                    </div>
+                    <div>
+                        <input id="username" name="username" type="text" class="contact-input-text" required>
+                    </div>
+                </div>
+
+                <div class="contact-column right">
+                    <div>
+                        <label for="secondname">Apellidos</label>
+                    </div>
+                    <div>
+                        <input id="secondname" name="secondname" type="text" class="contact-input-text" required>
+                    </div>
+                </div>
+
+                <div class="contact-column left">
+                    <div>
+                        <label for="telephone">Teléfono</label>
+                    </div>
+                    <div>
+                        <input id="telephone" name="telephone" type="text" class="contact-input-text" required>
+                    </div>
+                </div>
+
+                <div class="contact-column right">
+                    <div>
+                        <label for="email">Correo</label>
+                    </div>
+                    <div>
+                        <input id="email" name="email" type="text" class="contact-input-text" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-row">
+                <div class="contact-column left">
+                    <div>
+                        <label>Selecciones los servicios que desea consultar: </label>
+                    </div>
+
+                    <div class="form-check text-capitalize">
+                        <input class="form-check-input" type="checkbox" id="Checkbox1" value="option1">
+                        <label class="form-check-label" for="Checkbox1">Seguridad Y Salud en el Trabajo</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox2" value="option2">
+                        <label class="form-check-label" for="Checkbox2">plan estratégico de seguridad vial</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox3" value="option3">
+                        <label class="form-check-label" for="Checkbox3">baterias de riesgo psicosocial</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox4" value="option3">
+                        <label class="form-check-label" for="Checkbox4">auditorias en SG-SST</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox5" value="option1">
+                        <label class="form-check-label" for="Checkbox5">selección de personal</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox6" value="option2">
+                        <label class="form-check-label" for="Checkbox6">asesoria mensual y/o auditoria en gestion
+                            humana</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox7" value="option3">
+                        <label class="form-check-label" for="Checkbox7">asistencia jurídica</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox8" value="option3">
+                        <label class="form-check-label" for="Checkbox8">asistencia contable</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="contact-row">
+                <div>
+                    <label for="usermessage">Mensaje</label>
+                </div>
+                <textarea id="usermessage" cols="30" rows="10"></textarea>
+            </div>
+
+            <div class="text-center">
+                <input class="btn-green" type="submit" value="Enviar">
+            </div>
+        </form> -->
+
+</section>

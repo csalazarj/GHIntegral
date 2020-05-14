@@ -6,6 +6,7 @@ mongoose
   .connect(MONGODB_URI, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
+    useCreateIndex: true
   })
   .then((bd) => console.log("Database is conected"))
   .catch((err) => console.log(err));

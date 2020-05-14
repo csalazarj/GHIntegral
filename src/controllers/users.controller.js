@@ -43,12 +43,16 @@ userCtrl.renderSignInForm = (req, res) => {
   res.render("users/signin");
 };
 
-userCtrl.signIn = (req, res) => {
-  res.send("Sign In");
-};
+userCtrl.signIn = passport.authenticate("local", {
+  failureRedirect: "/users/signin",
+  successRedirect: "/blog",
+  failureFlash: true,
+});
 
 userCtrl.logout = (req, res) => {
-  res.send("Log Out");
+  req.logout();
+  req.flash("success_msg", "Sesión Cerrada Exitosamente");
+  res.redirect("/");
 };
 
 module.exports = userCtrl;

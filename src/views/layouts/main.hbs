@@ -23,13 +23,17 @@
 <body>
 
     {{>navigation}}
-    {{{body}}}
-    {{>errors}}
-    {{>messages}}
+
+    <div class="container-fluid mt-5 pt-5">
+        {{>messages}}
+        {{>errors}}
+        {{{body}}}
+    </div>
+
 
 
     <!-- FOOTER -->
-    <footer class="footer">
+    <footer class="footer mt-5">
         <p class="mt-2 p-3 text-center bg-secondary text-third">
             Contamos con licencia de la Seccional de Salud de Antioquia para diseñar, implementar y ejecutar el
             Sistema de Gestión en Seguridad y Salud en el Trabajo | SG-SST

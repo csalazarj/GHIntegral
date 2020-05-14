@@ -6,7 +6,7 @@ body {
   background-color: white; }
 
 .bg-primary {
-  background-color: #1d6641 !important; }
+  background-color: #098C44 !important; }
 
 .bg-secondary {
   background-color: #0aaf55 !important; }
@@ -15,7 +15,7 @@ body {
   background-color: white !important; }
 
 .text-primary {
-  color: #1d6641 !important; }
+  color: #098C44 !important; }
 
 .text-secondary {
   color: #0aaf55 !important; }
@@ -28,30 +28,30 @@ body {
 
 /*--------------------BOTONES-----------------*/
 .btn-primary {
-  background-color: #1d6641 !important;
-  border-color: #06170e !important; }
+  background-color: #098C44 !important;
+  border-color: #032c15 !important; }
 
 .btn-primary:hover,
 .btn-primary:focus {
-  background-color: #123e28 !important; }
+  background-color: #065c2d !important; }
 
 .btn-primary:active {
-  background-color: #0c2a1b !important;
+  background-color: #044421 !important;
   border-color: black !important; }
 
 .btn-primary:focus {
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(29, 102, 65, 0.5) !important;
-          box-shadow: 0 0 0 0.2rem rgba(29, 102, 65, 0.5) !important; }
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(9, 140, 68, 0.5) !important;
+          box-shadow: 0 0 0 0.2rem rgba(9, 140, 68, 0.5) !important; }
 
 .btn-secondary {
   background-color: #0aaf55 !important; }
 
 .border-primary {
-  border-color: #1d6641 !important; }
+  border-color: #098C44 !important; }
 
 /*-----------------NAVBAR--------------*/
 .navbar-light .navbar-nav .nav-link {
-  color: #1d6641;
+  color: #098C44;
   -webkit-transition: background-color 0.3s, color 0.3s;
   transition: background-color 0.3s, color 0.3s;
   -webkit-transition: 1s;
@@ -69,7 +69,7 @@ body {
 .navbar-light
 .navbar-nav
 .show > .nav-link {
-  color: #1d6641;
+  color: #098C44;
   font-weight: bold; }
 
 .dropdown-item {
@@ -87,7 +87,7 @@ body {
 .dropdown-item.active {
   color: white;
   text-decoration: none;
-  background-color: #1d6641; }
+  background-color: #098C44; }
 
 .navbar-light .navbar-nav .nav-link {
   -webkit-transition: background-color 0.05s, color 0.05s;
@@ -112,7 +112,7 @@ body {
 /*----------------CONTACTO--------------------*/
 .contact-input-text {
   background: #e2f8d1;
-  border: 2px solid #1d6641; }
+  border: 2px solid #098C44; }
 
 #usermessage {
   width: 100%;
@@ -121,7 +121,7 @@ body {
 
 /*--------------FOOTER-------------*/
 .footer {
-  background-color: #1d6641;
+  background-color: #098C44;
   margin-top: 3rem; }
 
 /*# sourceMappingURL=style2.css.map */

@@ -10,18 +10,20 @@ const {
   deleteArticle
 } = require("../controllers/blog.controller");
 
+const {isAutenticated} = require('../helpers/auth');
+
 // get all articles
 router.get("/blog", renderBlog);
 
 // new article
-router.get("/blog/add", renderArticleForm);
-router.post("/blog/new-article", createNewArticle);
+router.get("/blog/add",isAutenticated, renderArticleForm);
+router.post("/blog/new-article", isAutenticated , createNewArticle);
 
 // edit articles
-router.get("/blog/edit/:id", renderEditForm);
-router.put("/blog/edit/:id", updateArticle);
+router.get("/blog/edit/:id", isAutenticated , renderEditForm);
+router.put("/blog/edit/:id", isAutenticated , updateArticle);
 
 // delete article
-router.delete("/blog/delete/:id", deleteArticle);
+router.delete("/blog/delete/:id", isAutenticated , deleteArticle);
 
 module.exports = router;

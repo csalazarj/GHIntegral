@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-light navbar-expand-md fixed-top bg-third border-bottom shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="#"><img width="70" id="logo-navbar" src="/images/logoGHIntegral.png"
+        <a class="navbar-brand" href="#"><img width="90" id="logo-navbar" src="/images/logoGHIntegral.png"
                 alt="logo-portafolio"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#principal-menu"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,6 +13,9 @@
             <ul class="navbar-nav ml-auto text-center text-capitalize text-secondary">
                 <li class="nav-item">
                     <a class="nav-link" href="/">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about-us">Nosotros</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -43,24 +46,33 @@
                             contable</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../about-us">Nosotros</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="../blog">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../contact-us">Contactenos</a>
+                    <a class="nav-link disabled" href="../contact-us">Contactenos</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav text-center text-capitalize text-secondary">
+                {{#if user}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" data-target="#menuAdmin" aria-haspopup="true" aria-expanded="false">
+                    </a>
+                    <div class="dropdown-menu" id="menuAdmin" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/blog/add">Agregar Articulo</a>
+                        <a class="dropdown-item" href="/users/signup">Registrar Admin</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/users/logout">Cerrar Sesión</a>
+                    </div>
+                </li>
+                {{else}}
                 <li class="nav-item">
                     <a class="nav-link" href="../users/signin">Iniciar Sesión</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../users/signup">Registrar Admin</a>
-                </li>
-
+                {{/if}}
             </ul>
-
         </div>
     </div>
 </nav>

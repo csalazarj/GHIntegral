@@ -3,7 +3,7 @@ const blogCtrl = {};
 const Article = require("../models/Article");
 
 blogCtrl.renderBlog = async (req, res) => {
-  const articles = await Article.find().lean();
+  const articles = await Article.find().lean().sort({ createdAt: "desc" });
   res.render("blog/articles", { articles });
 };
 
@@ -37,7 +37,7 @@ blogCtrl.updateArticle = async (req, res) => {
 
 blogCtrl.deleteArticle = async (req, res) => {
   await Article.findByIdAndDelete(req.params.id);
-  req.flash("success_msg", "Articulo borrado exitosamente!!");
+  req.flash("success_msg", "Articulo eliminado exitosamente!!");
   res.redirect("/blog");
 };
 

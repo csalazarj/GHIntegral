@@ -1,5 +1,6 @@
 const userCtrl = {};
 const User = require("../models/User");
+const Service = require("../models/Service");
 const passport = require("passport");
 
 userCtrl.renderSignUpForm = (req, res) => {
@@ -45,7 +46,7 @@ userCtrl.renderSignInForm = (req, res) => {
 
 userCtrl.signIn = passport.authenticate("local", {
   failureRedirect: "/users/signin",
-  successRedirect: "/blog",
+  successRedirect: "/",
   failureFlash: true,
 });
 
@@ -53,6 +54,106 @@ userCtrl.logout = (req, res) => {
   req.logout();
   req.flash("success_msg", "Sesión Cerrada Exitosamente");
   res.redirect("/");
+};
+
+
+userCtrl.renderIndexAdmin = async (req, res) => {
+  try {
+    const services = await Service.find().lean()
+    res.render("users/index-admin", { services });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+
+
+// Create new services
+userCtrl.renderServiceForm = (req, res) => {
+  try {
+    res.render("users/add-service");
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+userCtrl.createNewService = async (req, res) => {
+  try {
+    const { title, introduction, description, route } = req.body;
+    if (req.file != undefined) {
+      const name = req.file.originalname;
+      var image = "/images/services_img/" + name;
+      const newService = new Service({
+        title,
+        introduction,
+        description,
+        image,
+        route,
+      });
+      await newService.save();
+    } else {
+      const newService = new Service({
+        title,
+        introduction,
+        description,
+        route,
+      });
+      await newService.save();
+    }
+    req.flash("success_msg", "Servicio agregado exitosamente!!");
+    res.redirect("/users/index-admin");
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+// Edit services
+userCtrl.renderEditServiceForm = async (req, res) => {
+  try {
+    const service = await Service.findById(req.params.id).lean();
+    res.render("users/edit-service", { service });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+userCtrl.updateService = async (req, res) => {
+  try {
+    const { title, introduction, description, route } = req.body;
+    if (req.file != undefined) {
+      const name = req.file.originalname;
+      var image = "/images/services_img/" + name;
+      await Service.findByIdAndUpdate(req.params.id, {
+        title,
+        introduction,
+        description,
+        image,
+        route,
+      });
+    } else {
+      await Service.findByIdAndUpdate(req.params.id, {
+        title,
+        introduction,
+        description,
+        route,
+      });
+      req.flash("success_msg", "Servicio editado exitosamente!!");
+      res.redirect("/users/index-admin");
+    }
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+// Delete service
+userCtrl.deleteService = async (req, res) => {
+  try {
+    await Service.findByIdAndDelete(req.params.id);
+    req.flash("success_msg", "Servicio eliminado exitosamente!!");
+    res.redirect("/users/index-admin");
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
 };
 
 module.exports = userCtrl;

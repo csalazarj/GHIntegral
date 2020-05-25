@@ -1,44 +1,110 @@
 const blogCtrl = {};
-
 const Article = require("../models/Article");
 
+// Render Blog (Public/Admin)
 blogCtrl.renderBlog = async (req, res) => {
-  const articles = await Article.find().lean().sort({ createdAt: "desc" });
-  res.render("blog/articles", { articles });
+  try {
+    const articles = await Article.find().lean().sort({ createdAt: "desc" });
+    res.render("blog/articles", { articles });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
 };
 
+blogCtrl.renderBlogAdmin = async (req, res) => {
+  try {
+    const articles = await Article.find().lean().sort({ createdAt: "desc" });
+    res.render("blog/admin-articles", { articles });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+// Render Article by Id
+blogCtrl.renderArticleById = async(req, res)=>{
+  try {
+    const article = await Article.findById(req.params.id).lean();
+    res.render("blog/one-article", { article });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+}
+
+// Create Article
 blogCtrl.renderArticleForm = (req, res) => {
-  res.render("blog/new-article");
+  try {
+    res.render("blog/new-article");
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
 };
 
 blogCtrl.createNewArticle = async (req, res) => {
-  const { title, description, images } = req.body;
-  const newArticle = new Article({ title, description, images });
-  await newArticle.save();
-  req.flash("success_msg", "Articulo agregado exitosamente!!");
-  res.redirect("/blog");
+  try {
+    const { title, description } = req.body;
+    console.log("description", description);
+
+    if (req.file != undefined) {
+      const name = req.file.originalname;
+      var images = "/images/articles/" + name;
+      const newArticle = new Article({ title, description, images });
+      await newArticle.save();
+    } else {
+      const newArticle = new Article({ title, description });
+      await newArticle.save();
+    }
+
+    req.flash("success_msg", "Articulo agregado exitosamente!!");
+    res.redirect("/blog/admin-articles");
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
 };
 
+// Update Articles
 blogCtrl.renderEditForm = async (req, res) => {
-  const article = await Article.findById(req.params.id).lean();
-  res.render("blog/edit-article", { article });
+  try {
+    const article = await Article.findById(req.params.id).lean();
+    res.render("blog/edit-article", { article });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
 };
 
 blogCtrl.updateArticle = async (req, res) => {
-  const { title, description, images } = req.body;
-  await Article.findByIdAndUpdate(req.params.id, {
-    title,
-    description,
-    images,
-  });
-  req.flash("success_msg", "Articulo editado exitosamente!!");
-  res.redirect("/blog");
+  try {
+    const { title, description } = req.body;
+    if (req.file != undefined) {
+      const name = req.file.originalname;
+      var images = "/images/articles/" + name;
+      await Article.findByIdAndUpdate(req.params.id, {
+        title,
+        description,
+        images,
+      });
+    } else {
+      await Article.findByIdAndUpdate(req.params.id, {
+        title,
+        description,
+      });
+    }
+
+    req.flash("success_msg", "Articulo editado exitosamente!!");
+    res.redirect("/blog/admin-articles");
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
 };
 
+// Delete Article
 blogCtrl.deleteArticle = async (req, res) => {
-  await Article.findByIdAndDelete(req.params.id);
-  req.flash("success_msg", "Articulo eliminado exitosamente!!");
-  res.redirect("/blog");
+  try {
+    await Article.findByIdAndDelete(req.params.id);
+    req.flash("success_msg", "Articulo eliminado exitosamente!!");
+    res.redirect("/blog/admin-articles");
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
 };
 
 module.exports = blogCtrl;

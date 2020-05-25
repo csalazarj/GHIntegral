@@ -1,7 +1,13 @@
 const indexCtrl = {};
+const Service = require("../models/Service");
 
-indexCtrl.renderIndex = (req, res) => {
-  res.render("index");
+indexCtrl.renderIndex = async (req, res) => {
+  try {
+    const services = await Service.find().lean();
+    res.render("index", { services });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
 };
 
 indexCtrl.renderAbout = (req, res) => {
@@ -43,6 +49,5 @@ indexCtrl.renderS7 = (req, res) => {
 indexCtrl.renderS8 = (req, res) => {
   res.render("seleccion-personal");
 };
-
 
 module.exports = indexCtrl;

@@ -56,13 +56,16 @@
             </ul>
             <ul class="navbar-nav text-center text-capitalize text-secondary">
                 {{#if user}}
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown dropleft">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" data-target="#menuAdmin" aria-haspopup="true" aria-expanded="false">
                     </a>
                     <div class="dropdown-menu" id="menuAdmin" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/blog/add">Agregar Articulo</a>
-                        <a class="dropdown-item" href="/users/signup">Registrar Admin</a>
+                        <a class="dropdown-item" href="/blog/admin-articles">Editar Articulo</a>
+                        <a class="dropdown-item" href="/users/add-service">Agregar Servicio</a>
+                        <a class="dropdown-item" href="/users/index-admin">Editar Servicio</a>
+                        <a class="dropdown-item" href="/users/signup">Registrar Administrador</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/users/logout">Cerrar Sesión</a>
                     </div>

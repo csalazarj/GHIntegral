@@ -1,12 +1,17 @@
 <!-- SECCION DE LA PORTADA SOBRE NOSOTROS-->
 <article class="row mb-5">
     <div class="col-12 col-lg-8 d-flex align-items-lg-center justify-content-center">
-        <img class="img-fluid w-md-75 " src="images/portada.png" alt="portada">
+        <img class="img-fluid w-md-75 " src="/images/portada.png" alt="portada">
     </div>
     <div class="col-12 col-lg-4 text-center">
         <h1 class="display-4 font-weight-bold text-primary">Sobre Nosotros</h1>
-        <p>Pensando en las necesidades del cliente y en la posibilidad de que las compañías cuenten
-            con <strong>Procesos Administrativos</strong> efectivos, rentables y oportunos,<strong> GH INTEGRAL S.A.S.</strong> les brinda la oportunidad, mediante los servicios de outsourcing en: Seguridad Social, Seguridad y Trabajo, Asesoría Contable, Auditoría en Gestión Humana, Selección de Personal y Asistencia Jurídica</p>
+        <p class="">Pensando en las necesidades del cliente y en la posibilidad de que las compañías cuenten
+            con
+            <strong>Procesos Administrativos</strong> efectivos, rentables y oportunos,<strong> GH INTEGRAL
+                S.A.S.</strong> les brinda la
+            oportunidad, mediante los servicios de outsourcing en: Nómina y Seguridad Social, Seguridad y
+            Salud en el Trabajo, Asesoría Contable, Auditoría en Gestión Humana, Selección de Personal y
+            Asistencia Jurídica</p>
         <a class="btn btn-primary" href="/about-us">Saber más</a>
     </div>
 </article>
@@ -25,9 +30,17 @@
                     <img src="{{image}}" class="card-img-top" alt="{{title}}">
                     <div class="card-body">
                         <h5 class="card-title">{{title}}
+                            <a href="/users/edit-service/{{_id}}"><i class="fas fa-pencil-alt text-primary"></i></a>
                         </h5>
                         <p class="card-text">{{introduction}}</p>
                         <a href="{{route}}" class="btn btn-primary">Saber más</a>
+
+
+                        <form action="/users/delete-service/{{_id}}?_method=DELETE" method="POST"
+                            class="d-flex justify-content-center pt-2">
+                            <input type="hidden" name="__method" value="DELETE">
+                            <button type="submit" class="btn btn-danger btn-md">Borrar</button>
+                        </form>
                     </div>
                 </div>
             </article>
@@ -42,10 +55,7 @@
 <section class="blog my-5">
 
     <h1 class="text-primary text-center display-4 font-weight-bold">
-        <span class="h2">
-            NOTICIAS DE INTERES
-            DESDE NUESTRO BLOG
-        </span>
+        <span>Blog</span>
     </h1>
     <section class="container font-weight-bold">
 
@@ -59,28 +69,28 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="images/proyecto1.png" class="d-block w-100" alt="...">
+                    <img src="/images/proyecto1.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block text-dark">
                         <h5>First slide label</h5>
                         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="images/proyecto2.png" class="d-block w-100" alt="...">
+                    <img src="/images/proyecto2.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block text-dark">
                         <h5>Second slide label</h5>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="images/proyecto3.png" class="d-block w-100" alt="...">
+                    <img src="/images/proyecto3.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block text-dark">
                         <h5>Third slide label</h5>
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="images/proyecto4.png" class="d-block w-100" alt="...">
+                    <img src="/images/proyecto4.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block text-dark">
                         <h5>Forth slide label</h5>
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>

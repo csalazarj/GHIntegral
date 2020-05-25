@@ -1,10 +1,12 @@
 const indexCtrl = {};
 const Service = require("../models/Service");
+const Article = require("../models/Article");
 
 indexCtrl.renderIndex = async (req, res) => {
   try {
     const services = await Service.find().lean();
-    res.render("index", { services });
+    const articles = await Article.find().lean();
+    res.render("index", { services, articles });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }

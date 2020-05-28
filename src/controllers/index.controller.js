@@ -27,35 +27,35 @@ indexCtrl.renderContact = (req, res) => {
 };
 
 indexCtrl.renderS1 = (req, res) => {
-  res.render("asistencia-contable");
+  res.render("services/asistencia-contable");
 };
 
 indexCtrl.renderS2 = (req, res) => {
-  res.render("asistencia-juridica");
+  res.render("services/asistencia-juridica");
 };
 
 indexCtrl.renderS3 = (req, res) => {
-  res.render("auditorias-sg-sst");
+  res.render("services/auditorias-sg-sst");
 };
 
 indexCtrl.renderS4 = (req, res) => {
-  res.render("gestion-humana");
+  res.render("services/gestion-humana");
 };
 
 indexCtrl.renderS5 = (req, res) => {
-  res.render("riesgo-psicosocial");
+  res.render("services/riesgo-psicosocial");
 };
 
 indexCtrl.renderS6 = (req, res) => {
-  res.render("seguridad-vial");
+  res.render("services/seguridad-vial");
 };
 
 indexCtrl.renderS7 = (req, res) => {
-  res.render("seguridad-y-salud");
+  res.render("services/seguridad-y-salud");
 };
 
 indexCtrl.renderS8 = (req, res) => {
-  res.render("seleccion-personal");
+  res.render("services/seleccion-personal");
 };
 
 module.exports = indexCtrl;

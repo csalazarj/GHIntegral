@@ -1,6 +1,7 @@
 const indexCtrl = {};
 const Service = require("../models/Service");
 const Article = require("../models/Article");
+const Employee = require("../models/Employee");
 
 indexCtrl.renderIndex = async (req, res) => {
   try {
@@ -12,8 +13,13 @@ indexCtrl.renderIndex = async (req, res) => {
   }
 };
 
-indexCtrl.renderAbout = (req, res) => {
-  res.render("about-us");
+indexCtrl.renderAbout = async (req, res) => {
+  try {
+    const employees = await Employee.find().lean();
+    res.render("about-us", { employees });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
 };
 
 indexCtrl.renderContact = (req, res) => {

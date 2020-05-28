@@ -58,7 +58,7 @@
                 </div>
                 {{#each articles}}
                 <div class="carousel-item">
-                    <img src="{{images}}" class="d-block w-100" alt="{{title}}">
+                   <a href="/blog/article/{{_id}}"><img src="{{images}}" class="d-block w-100" alt="{{title}}"></a> 
                     <div class="carousel-caption d-none d-md-block text-dark">
                        <a href="/blog/article/{{_id}}"> <span class="h3">{{title}}</span></a>
                         {{!-- <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> --}}

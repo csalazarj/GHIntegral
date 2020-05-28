@@ -1,6 +1,8 @@
 const { Router } = require("express");
+
+// Multer´s Services Index
 const multer = require("multer");
-const storage = multer.diskStorage({
+const storageService = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "src/public/images/services_img/");
   },
@@ -8,7 +10,19 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const upload = multer({ storage: storage });
+const uploadService = multer({ storage: storageService });
+
+// Multer´s Employees About us
+const storageEmployee = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "src/public/images/employees/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const uploadEmployee = multer({ storage: storageEmployee });
+
 const router = Router();
 
 const {
@@ -23,6 +37,12 @@ const {
   renderEditServiceForm,
   updateService,
   deleteService,
+  renderAboutUsAdmin,
+  renderEmployeeForm,
+  createNewEmployee,
+  renderEditEmployeeForm,
+  updateEmployee,
+  deleteEmployee
 } = require("../controllers/users.controller");
 
 const { isAutenticated } = require("../helpers/auth");
@@ -47,7 +67,7 @@ router.get("/users/add-service", isAutenticated, renderServiceForm);
 router.post(
   "/users/add-service",
   isAutenticated,
-  upload.single("img_file_service"),
+  uploadService.single("img_file_service"),
   createNewService
 );
 
@@ -55,12 +75,37 @@ router.post(
 router.get("/users/edit-service/:id", isAutenticated, renderEditServiceForm);
 router.put(
   "/users/edit-service/:id",
-  upload.single("img_file_service"),
+  uploadService.single("img_file_service"),
   isAutenticated,
   updateService
 );
 
 // delete service
 router.delete("/users/delete-service/:id", isAutenticated, deleteService);
+
+// -------------------------- EMPLOYEES SECTION -----------------------------
+router.get("/users/about-us-admin", isAutenticated, renderAboutUsAdmin);
+
+
+// Add employee to about us
+router.get("/users/add-employee", isAutenticated, renderEmployeeForm);
+router.post(
+  "/users/add-employee",
+  isAutenticated,
+  uploadEmployee.single("img_file_employee"),
+  createNewEmployee
+);
+
+// Update employee to about us
+router.get("/users/edit-employee/:id", isAutenticated, renderEditEmployeeForm);
+router.put(
+  "/users/edit-employee/:id",
+  uploadEmployee.single("img_file_employee"),
+  isAutenticated,
+  updateEmployee
+);
+
+// delete employee
+router.delete("/users/delete-employee/:id", isAutenticated, deleteEmployee);
 
 module.exports = router;

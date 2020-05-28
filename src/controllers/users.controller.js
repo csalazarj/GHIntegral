@@ -1,6 +1,7 @@
 const userCtrl = {};
 const User = require("../models/User");
 const Service = require("../models/Service");
+const Employee = require("../models/Employee");
 const passport = require("passport");
 
 userCtrl.renderSignUpForm = (req, res) => {
@@ -56,17 +57,16 @@ userCtrl.logout = (req, res) => {
   res.redirect("/");
 };
 
-
 userCtrl.renderIndexAdmin = async (req, res) => {
   try {
-    const services = await Service.find().lean()
+    const services = await Service.find().lean();
     res.render("users/index-admin", { services });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
 };
 
-
+// -------------------------- SERVICES SECTION -----------------------------
 
 // Create new services
 userCtrl.renderServiceForm = (req, res) => {
@@ -151,6 +151,113 @@ userCtrl.deleteService = async (req, res) => {
     await Service.findByIdAndDelete(req.params.id);
     req.flash("success_msg", "Servicio eliminado exitosamente!!");
     res.redirect("/users/index-admin");
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+// -------------------------- EMPLOYEES SECTION -----------------------------
+
+userCtrl.renderAboutUsAdmin = async (req, res) => {
+  try {
+    const employees = await Employee.find().lean();
+    res.render("users/about-us-admin", { employees });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+// Add new employee
+userCtrl.renderEmployeeForm = (req, res) => {
+  try {
+    res.render("users/add-employee");
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+userCtrl.createNewEmployee = async (req, res) => {
+  try {
+    const { name, position, facebook, twitter, instagram, linkedin } = req.body;
+    if (req.file != undefined) {
+      const name_img = req.file.originalname;
+      var image = "/images/employees/" + name_img;
+      const newEmployee = new Employee({
+        name,
+        image,
+        position,
+        facebook,
+        twitter,
+        instagram,
+        linkedin,
+      });
+      await newEmployee.save();
+    } else {
+      const newEmployee = new Employee({
+        name,
+        position,
+        facebook,
+        twitter,
+        instagram,
+        linkedin,
+      });
+      await newEmployee.save();
+    }
+    req.flash("success_msg", "Empleado agregado exitosamente!!");
+    res.redirect("/users/about-us-admin");
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+// Edit employees
+userCtrl.renderEditEmployeeForm = async (req, res) => {
+  try {
+    const employee = await Employee.findById(req.params.id).lean();
+    res.render("users/edit-employee", { employee });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+userCtrl.updateEmployee = async (req, res) => {
+  try {
+    const { name, position, facebook, twitter, instagram, linkedin } = req.body;
+    if (req.file != undefined) {
+      const name_img = req.file.originalname;
+      var image = "/images/employees/" + name_img;
+      await Employee.findByIdAndUpdate(req.params.id, {
+        name,
+        image,
+        position,
+        facebook,
+        twitter,
+        instagram,
+        linkedin,
+      });
+    } else {
+      await Employee.findByIdAndUpdate(req.params.id, {
+        name,
+        position,
+        facebook,
+        twitter,
+        instagram,
+        linkedin,
+      });
+    }
+    req.flash("success_msg", "Empleado editado exitosamente!!");
+    res.redirect("/users/about-us-admin");
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+// Delete employee
+userCtrl.deleteEmployee = async (req, res) => {
+  try {
+    await Employee.findByIdAndDelete(req.params.id);
+    req.flash("success_msg", "Empleado eliminado exitosamente!!");
+    res.redirect("/users/about-us-admin");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }

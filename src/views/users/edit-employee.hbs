@@ -1,10 +1,12 @@
 <div class="row">
     <div class="col-md-8 mx-auto">
-        <div class="card">
+        <div class="card shadow">
             <div class="card-header">
                 <h3>Editar Empleado / Sección Sobre Nosotros</h3>
                 <div class="card-body">
-                    <img src="{{employee.image}}" class="card-img-top w-50" alt="...">
+                    <div class="d-flex justify-content-center py-4">
+                        <img src="{{employee.image}}" class="img-fluid card-img-top w-25" alt="...">
+                    </div>
                     <form action="/users/edit-employee/{{employee._id}}?_method=PUT" method="POST"
                         enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="PUT">

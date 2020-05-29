@@ -23,7 +23,10 @@
                         Servicios
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../seguridad-y-salud">servicio y
+                        {{#each services}}
+                        <a class="dropdown-item text-capitalize border-bottom" href="/service/{{_id}}">{{title}}</a>
+                        {{/each}}
+                        {{!-- <a class="dropdown-item" href="../seguridad-y-salud">servicio y
                             salud en el
                             Trabajo</a>
                         <a class="dropdown-item" href="../seguridad-vial">plan
@@ -43,16 +46,17 @@
                         <a class="dropdown-item" href="../asistencia-juridica">asistencia
                             jurídica</a>
                         <a class="dropdown-item" href="../asistencia-contable">asistencia
-                            contable</a>
+                            contable</a> --}}
+                        
                     </div>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="/blog">Blog</a>
                 </li>
-                <li class="nav-item">
+                {{!-- <li class="nav-item">
                     <a class="nav-link disabled" href="../contact-us">Contactenos</a>
-                </li>
+                </li> --}}
             </ul>
             <ul class="navbar-nav text-center text-capitalize text-secondary">
                 {{#if user}}
@@ -63,10 +67,13 @@
                     <div class="dropdown-menu" id="menuAdmin" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/blog/add">Agregar Articulo</a>
                         <a class="dropdown-item" href="/blog/admin-articles">Editar Articulo</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/users/add-service">Agregar Servicio</a>
                         <a class="dropdown-item" href="/users/index-admin">Editar Servicio</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/users/add-employee">Agregar Empleado</a>
                         <a class="dropdown-item" href="/users/about-us-admin">Editar Empleado</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/users/signup">Registrar Administrador</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/users/logout">Cerrar Sesión</a>

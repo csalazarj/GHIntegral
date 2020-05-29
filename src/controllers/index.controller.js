@@ -15,47 +15,63 @@ indexCtrl.renderIndex = async (req, res) => {
 
 indexCtrl.renderAbout = async (req, res) => {
   try {
+    const services = await Service.find().lean();
     const employees = await Employee.find().lean();
-    res.render("about-us", { employees });
+    res.render("about-us", { employees, services });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
 };
 
-indexCtrl.renderContact = (req, res) => {
-  res.render("contact-us");
+indexCtrl.renderService = async (req, res) => {
+  try {
+    const services = await Service.find().lean();
+    const service = await Service.findById(req.params.id).lean();
+    res.render("services/service", { service, services });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
 };
 
-indexCtrl.renderS1 = (req, res) => {
-  res.render("services/asistencia-contable");
-};
+// indexCtrl.navigation = async (req,res)=>{
+//   const services = await Service.find().lean();
+//   res.render("partials/navigation", { services });
+// }
 
-indexCtrl.renderS2 = (req, res) => {
-  res.render("services/asistencia-juridica");
-};
+// indexCtrl.renderContact = (req, res) => {
+//   res.render("contact-us");
+// };
 
-indexCtrl.renderS3 = (req, res) => {
-  res.render("services/auditorias-sg-sst");
-};
+// indexCtrl.renderS1 = (req, res) => {
+//   res.render("services/asistencia-contable");
+// };
 
-indexCtrl.renderS4 = (req, res) => {
-  res.render("services/gestion-humana");
-};
+// indexCtrl.renderS2 = (req, res) => {
+//   res.render("services/asistencia-juridica");
+// };
 
-indexCtrl.renderS5 = (req, res) => {
-  res.render("services/riesgo-psicosocial");
-};
+// indexCtrl.renderS3 = (req, res) => {
+//   res.render("services/auditorias-sg-sst");
+// };
 
-indexCtrl.renderS6 = (req, res) => {
-  res.render("services/seguridad-vial");
-};
+// indexCtrl.renderS4 = (req, res) => {
+//   res.render("services/gestion-humana");
+// };
 
-indexCtrl.renderS7 = (req, res) => {
-  res.render("services/seguridad-y-salud");
-};
+// indexCtrl.renderS5 = (req, res) => {
+//   res.render("services/riesgo-psicosocial");
+// };
 
-indexCtrl.renderS8 = (req, res) => {
-  res.render("services/seleccion-personal");
-};
+// indexCtrl.renderS6 = (req, res) => {
+//   res.render("services/seguridad-vial");
+// };
+
+// indexCtrl.renderS7 = (req, res) => {
+//   res.render("services/seguridad-y-salud");
+// };
+
+// indexCtrl.renderS8 = (req, res) => {
+//   res.render("services/seleccion-personal");
+// };
 
 module.exports = indexCtrl;

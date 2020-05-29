@@ -4,8 +4,9 @@ const Service = require("../models/Service");
 const Employee = require("../models/Employee");
 const passport = require("passport");
 
-userCtrl.renderSignUpForm = (req, res) => {
-  res.render("users/signup");
+userCtrl.renderSignUpForm = async (req, res) => {
+  const services = await Service.find().lean();
+  res.render("users/signup", {services});
 };
 
 userCtrl.signUp = async (req, res) => {
@@ -41,8 +42,9 @@ userCtrl.signUp = async (req, res) => {
   }
 };
 
-userCtrl.renderSignInForm = (req, res) => {
-  res.render("users/signin");
+userCtrl.renderSignInForm = async (req, res) => {
+  const services = await Service.find().lean();
+  res.render("users/signin", {services});
 };
 
 userCtrl.signIn = passport.authenticate("local", {
@@ -69,9 +71,10 @@ userCtrl.renderIndexAdmin = async (req, res) => {
 // -------------------------- SERVICES SECTION -----------------------------
 
 // Create new services
-userCtrl.renderServiceForm = (req, res) => {
+userCtrl.renderServiceForm = async (req, res) => {
   try {
-    res.render("users/add-service");
+    const services = await Service.find().lean();
+    res.render("users/add-service", {services});
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -110,8 +113,9 @@ userCtrl.createNewService = async (req, res) => {
 // Edit services
 userCtrl.renderEditServiceForm = async (req, res) => {
   try {
+    const services = await Service.find().lean();
     const service = await Service.findById(req.params.id).lean();
-    res.render("users/edit-service", { service });
+    res.render("users/edit-service", { service, services });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -160,17 +164,19 @@ userCtrl.deleteService = async (req, res) => {
 
 userCtrl.renderAboutUsAdmin = async (req, res) => {
   try {
+    const services = await Service.find().lean();
     const employees = await Employee.find().lean();
-    res.render("users/about-us-admin", { employees });
+    res.render("users/about-us-admin", { employees, services });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
 };
 
 // Add new employee
-userCtrl.renderEmployeeForm = (req, res) => {
+userCtrl.renderEmployeeForm = async (req, res) => {
   try {
-    res.render("users/add-employee");
+    const services = await Service.find().lean();
+    res.render("users/add-employee", {services});
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -213,8 +219,9 @@ userCtrl.createNewEmployee = async (req, res) => {
 // Edit employees
 userCtrl.renderEditEmployeeForm = async (req, res) => {
   try {
+    const services = await Service.find().lean();
     const employee = await Employee.findById(req.params.id).lean();
-    res.render("users/edit-employee", { employee });
+    res.render("users/edit-employee", { employee, services });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }

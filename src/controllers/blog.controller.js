@@ -1,11 +1,13 @@
 const blogCtrl = {};
 const Article = require("../models/Article");
+const Service = require("../models/Service");
 
 // Render Blog (Public/Admin)
 blogCtrl.renderBlog = async (req, res) => {
   try {
+    const services = await Service.find().lean();
     const articles = await Article.find().lean().sort({ createdAt: "desc" });
-    res.render("blog/articles", { articles });
+    res.render("blog/articles", { articles, services });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -13,27 +15,30 @@ blogCtrl.renderBlog = async (req, res) => {
 
 blogCtrl.renderBlogAdmin = async (req, res) => {
   try {
+    const services = await Service.find().lean();
     const articles = await Article.find().lean().sort({ createdAt: "desc" });
-    res.render("blog/admin-articles", { articles });
+    res.render("blog/admin-articles", { articles, services });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
 };
 
 // Render Article by Id
-blogCtrl.renderArticleById = async(req, res)=>{
+blogCtrl.renderArticleById = async (req, res) => {
   try {
+    const services = await Service.find().lean();
     const article = await Article.findById(req.params.id).lean();
-    res.render("blog/one-article", { article });
+    res.render("blog/one-article", { article, services });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
-}
+};
 
 // Create Article
-blogCtrl.renderArticleForm = (req, res) => {
+blogCtrl.renderArticleForm = async (req, res) => {
   try {
-    res.render("blog/new-article");
+    const services = await Service.find().lean();
+    res.render("blog/new-article", { services });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -42,7 +47,6 @@ blogCtrl.renderArticleForm = (req, res) => {
 blogCtrl.createNewArticle = async (req, res) => {
   try {
     const { title, description } = req.body;
-    console.log("description", description);
 
     if (req.file != undefined) {
       const name = req.file.originalname;
@@ -64,8 +68,9 @@ blogCtrl.createNewArticle = async (req, res) => {
 // Update Articles
 blogCtrl.renderEditForm = async (req, res) => {
   try {
+    const services = await Service.find().lean();
     const article = await Article.findById(req.params.id).lean();
-    res.render("blog/edit-article", { article });
+    res.render("blog/edit-article", { article, services });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }

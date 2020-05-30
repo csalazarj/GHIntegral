@@ -184,12 +184,13 @@ userCtrl.renderEmployeeForm = async (req, res) => {
 
 userCtrl.createNewEmployee = async (req, res) => {
   try {
-    const { name, position, facebook, twitter, instagram, linkedin } = req.body;
+    const { name, position, id_card, facebook, twitter, instagram, linkedin } = req.body;
     if (req.file != undefined) {
       const name_img = req.file.originalname;
       var image = "/images/employees/" + name_img;
       const newEmployee = new Employee({
         name,
+        id_card,
         image,
         position,
         facebook,
@@ -202,6 +203,7 @@ userCtrl.createNewEmployee = async (req, res) => {
       const newEmployee = new Employee({
         name,
         position,
+        id_card,
         facebook,
         twitter,
         instagram,

@@ -2,6 +2,7 @@ const userCtrl = {};
 const User = require("../models/User");
 const Service = require("../models/Service");
 const Employee = require("../models/Employee");
+const Article = require("../models/Article");
 const passport = require("passport");
 
 userCtrl.renderSignUpForm = async (req, res) => {
@@ -62,7 +63,8 @@ userCtrl.logout = (req, res) => {
 userCtrl.renderIndexAdmin = async (req, res) => {
   try {
     const services = await Service.find().lean();
-    res.render("users/index-admin", { services });
+    const articles = await Article.find().lean();
+    res.render("users/index-admin", { services, articles });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }

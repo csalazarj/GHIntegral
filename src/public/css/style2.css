@@ -109,6 +109,17 @@ body {
 .card-title {
   text-transform: capitalize; }
 
+.service-img {
+  position: relative; }
+
+.service-img::before {
+  content: "";
+  background-color: #098C44;
+  position: absolute;
+  opacity: 0.5;
+  height: 100%;
+  width: 100%; }
+
 /*----------------CONTACTO--------------------*/
 .contact-input-text {
   background: #e2f8d1;

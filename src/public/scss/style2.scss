@@ -143,6 +143,19 @@ body{
     text-transform: capitalize;
 }
 
+.service-img{
+    position: relative;
+}
+
+.service-img::before{
+    content: "";
+    background-color: $primary-color;
+    position: absolute;
+    opacity: 0.5;
+    height: 100%;
+    width: 100%;
+}
+
 
 /*----------------CONTACTO--------------------*/
 

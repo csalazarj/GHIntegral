@@ -110,6 +110,7 @@ body {
   text-transform: capitalize; }
 
 .service-img {
+  background: url(../images/imagen-grande.jpg) #098C44;
   position: relative; }
 
 .service-img::before {

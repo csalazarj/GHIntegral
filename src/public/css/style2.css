@@ -121,6 +121,18 @@ body {
   height: 100%;
   width: 100%; }
 
+.carousel-item {
+  position: relative; }
+
+.carousel-item::before {
+  content: "";
+  background-color: #098C44;
+  position: absolute;
+  opacity: 0.6;
+  height: 30%;
+  width: 100%;
+  bottom: 0; }
+
 /*----------------CONTACTO--------------------*/
 .contact-input-text {
   background: #e2f8d1;

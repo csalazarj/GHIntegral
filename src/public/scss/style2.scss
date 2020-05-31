@@ -158,6 +158,20 @@ body{
 }
 
 
+.carousel-item{
+    position: relative;
+}
+
+.carousel-item::before{
+    content: "";
+    background-color: $primary-color;
+    position: absolute;
+    opacity: 0.6;
+    height: 30%;
+    width: 100%;
+    bottom: 0;
+}
+
 /*----------------CONTACTO--------------------*/
 
 

@@ -23,6 +23,17 @@ const storageEmployee = multer.diskStorage({
 });
 const uploadEmployee = multer({ storage: storageEmployee });
 
+// Multer´s About us Content
+const storageAbout = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "src/public/images/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const uploadAbout = multer({ storage: storageEmployee });
+
 const router = Router();
 
 const {
@@ -42,7 +53,9 @@ const {
   createNewEmployee,
   renderEditEmployeeForm,
   updateEmployee,
-  deleteEmployee
+  deleteEmployee,
+  renderAboutForm,
+  editAbout
 } = require("../controllers/users.controller");
 
 const { isAutenticated } = require("../helpers/auth");
@@ -83,9 +96,17 @@ router.put(
 // delete service
 router.delete("/users/delete-service/:id", isAutenticated, deleteService);
 
-// -------------------------- EMPLOYEES SECTION -----------------------------
+// -------------------------- ABOUT US / EMPLOYEES SECTION -----------------------------
+
 router.get("/users/about-us-admin", isAutenticated, renderAboutUsAdmin);
 
+router.get("/users/edit-about-us", isAutenticated, renderAboutForm);
+router.put(
+  "/users/edit-about-us",
+  isAutenticated,
+  uploadAbout.single("img_file_about_us"),
+  editAbout
+);
 
 // Add employee to about us
 router.get("/users/add-employee", isAutenticated, renderEmployeeForm);

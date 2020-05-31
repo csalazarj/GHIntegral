@@ -2,6 +2,7 @@ const indexCtrl = {};
 const Service = require("../models/Service");
 const Article = require("../models/Article");
 const Employee = require("../models/Employee");
+const About = require("../models/About-us");
 
 indexCtrl.renderIndex = async (req, res) => {
   try {
@@ -15,9 +16,12 @@ indexCtrl.renderIndex = async (req, res) => {
 
 indexCtrl.renderAbout = async (req, res) => {
   try {
+    const aboutContent = await About.findById(
+      "5ed32e209d71ae447832f876"
+    ).lean();
     const services = await Service.find().lean();
     const employees = await Employee.find().lean();
-    res.render("about-us", { employees, services });
+    res.render("about-us", { employees, services, aboutContent });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }

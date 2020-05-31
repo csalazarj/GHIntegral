@@ -7,36 +7,14 @@
 <article class="container-fluid mt-4">
     <div class="row mt-4 text-center ">
         <div class="col-12 col-xl-6 mb-md-5">
-            <h1 class="text-primary">Nuestra historia</h1>
-            <img class="d-flex align-self-center mt-3 img-fluid mx-auto d-block w-75" id="image1"
-                src="../images/seguridad-y-salud-en-el-trabajo.jpg" alt="seguridad-y-salud-en-el-trabajo">
+            <h1 class="text-primary display-4">{{aboutContent.title}}</h1>
+            <img class="d-flex align-self-center mt-3 img-fluid mx-auto d-block w-75" id="image1" src="{{aboutContent.image}}"
+                alt="{{aboutContent.title}}">
 
         </div>
         <div class="col-12 col-xl-6">
-            <h4 class="mt-3 text-center text-primary">Center-aligned media</h4>
-            <p class="about-us-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                tincidunt, lorem ut congue finibus, nisl lorem pellentesque nunc, fringilla aliquet libero magna id
-                nunc. Sed et accumsan mi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean eu ante
-                eget nulla
-                pulvinar tincidunt id nec risus. Curabitur nec risus semper, vulputate ante vitae, suscipit massa. Proin
-                ut enim pellentesque, condimentum augue id, vestibulum eros. Ut egestas a magna in faucibus. </p>
-
-            <p>Aliquam iaculis neque nulla, a interdum ligula pellentesque non. Vestibulum sit amet placerat magna.
-                Pellentesque interdum erat metus, eu fringilla tortor blandit nec. Orci varius natoque penatibus et
-                magnis dis parturient montes, nascetur ridiculus mus. Maecenas id iaculis justo. Etiam tellus sapien,
-                dapibus posuere neque eu, facilisis suscipit massa. Quisque tempor sapien sit amet lacus vulputate, a
-                molestie
-                ex accumsan. Vestibulum auctor varius sem, et mattis urna ornare id.
-            </p>
-            <p>Vivamus consectetur leo sed justo vulputate, ut elementum libero elementum. Suspendisse sodales purus
-                nulla, dictum porta sem faucibus a. Aenean eros quam, volutpat a dictum sit amet, consectetur quis dui.
-                Cras in felis elementum, congue elit sed, mollis tortor. Nam congue eros id dolor mattis, non elementum
-                justo
-                iaculis. Integer ornare lorem porta interdum finibus. Donec dolor ligula, eleifend vel tellus eu,
-                malesuada rhoncus dui. Donec sed tempor metus. Aenean vel sapien vitae libero imperdiet feugiat auctor
-                quis est. Aenean vitae rutrum mauris. Aenean eget feugiat magna, sit amet varius nulla. Integer auctor
-                felis nunc,
-                eget faucibus ante interdum ut.</p>
+            <h4 class="mt-3 text-center text-primary display-4">{{aboutContent.subtitle}}</h4>
+            <p class="description_article">{{aboutContent.description1}}</p>
         </div>
     </div>
 </article>
@@ -44,10 +22,8 @@
 <article class="container">
     <div class="row">
         <div class="col-12 text-center">
-            <h2 class="h2 mt-5 text-primary display-4 ">Nuestro Equipo</h2>
-            <p class="team-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quae nam
-                reprehenderit non optio eos ex atque, maiores distinctio aliquam amet iusto at dolore facere earum,
-                temporibus, alias sit.</p>
+            <h2 class="h2 mt-5 text-primary display-4 ">{{aboutContent.title2}}</h2>
+            <p class="description_article">{{aboutContent.description2}}</p>
         </div>
     </div>
 
@@ -64,6 +40,14 @@
                 <a href="{{twitter}}" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="{{instagram}}" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="{{linkedin}}" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div class="border border-primary rounded d-flex justify-content-around p-2 mt-1">
+                <a href="/users/edit-employee/{{_id}}"><i class="fas fa-pencil-alt text-primary"></i></a>
+                <form action="/users/delete-employee/{{_id}}?_method=DELETE" method="POST"
+                    class="d-flex justify-content-center">
+                    <input type="hidden" name="__method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                </form>
             </div>
         </div>
         {{/each}}

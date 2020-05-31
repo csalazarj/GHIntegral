@@ -3,11 +3,12 @@ const User = require("../models/User");
 const Service = require("../models/Service");
 const Employee = require("../models/Employee");
 const Article = require("../models/Article");
+const About = require("../models/About-us");
 const passport = require("passport");
 
 userCtrl.renderSignUpForm = async (req, res) => {
   const services = await Service.find().lean();
-  res.render("users/signup", {services});
+  res.render("users/signup", { services });
 };
 
 userCtrl.signUp = async (req, res) => {
@@ -45,7 +46,7 @@ userCtrl.signUp = async (req, res) => {
 
 userCtrl.renderSignInForm = async (req, res) => {
   const services = await Service.find().lean();
-  res.render("users/signin", {services});
+  res.render("users/signin", { services });
 };
 
 userCtrl.signIn = passport.authenticate("local", {
@@ -76,7 +77,7 @@ userCtrl.renderIndexAdmin = async (req, res) => {
 userCtrl.renderServiceForm = async (req, res) => {
   try {
     const services = await Service.find().lean();
-    res.render("users/add-service", {services});
+    res.render("users/add-service", { services });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -162,13 +163,70 @@ userCtrl.deleteService = async (req, res) => {
   }
 };
 
-// -------------------------- EMPLOYEES SECTION -----------------------------
+// -------------------------- ABOUT US / EMPLOYEES SECTION -----------------------------
 
 userCtrl.renderAboutUsAdmin = async (req, res) => {
   try {
+    const aboutContent = await About.findById(
+      "5ed32e209d71ae447832f876"
+    ).lean();
     const services = await Service.find().lean();
     const employees = await Employee.find().lean();
-    res.render("users/about-us-admin", { employees, services });
+    res.render("users/about-us-admin", { employees, services, aboutContent });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+userCtrl.renderAboutForm = async (req, res) => {
+  try {
+    const services = await Service.find().lean();
+    const aboutContent = await About.findById(
+      "5ed32e209d71ae447832f876"
+    ).lean();
+    res.render("about-us-form", { services, aboutContent });
+  } catch (error) {
+    res.status(500).send({ status: "ERROR", message: error.message });
+  }
+};
+
+userCtrl.editAbout = async (req, res) => {
+  try {
+    const {
+      title,
+      description1,
+      mision,
+      vision,
+      subtitle,
+      title2,
+      description2,
+    } = req.body;
+    if (req.file != undefined) {
+      const name_img = req.file.originalname;
+      var image = "/images/" + name_img;
+      await About.findByIdAndUpdate("5ed32e209d71ae447832f876", {
+        title,
+        description1,
+        mision,
+        vision,
+        subtitle,
+        title2,
+        description2,
+        image,
+      });
+    } else {
+      await About.findByIdAndUpdate("5ed32e209d71ae447832f876", {
+        title,
+        description1,
+        mision,
+        vision,
+        subtitle,
+        title2,
+        description2,
+      });
+    }
+    req.flash("success_msg", "Sección Nosotros actualizada exitosamente!!");
+    res.redirect("/users/about-us-admin");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -178,7 +236,7 @@ userCtrl.renderAboutUsAdmin = async (req, res) => {
 userCtrl.renderEmployeeForm = async (req, res) => {
   try {
     const services = await Service.find().lean();
-    res.render("users/add-employee", {services});
+    res.render("users/add-employee", { services });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -186,7 +244,15 @@ userCtrl.renderEmployeeForm = async (req, res) => {
 
 userCtrl.createNewEmployee = async (req, res) => {
   try {
-    const { name, position, id_card, facebook, twitter, instagram, linkedin } = req.body;
+    const {
+      name,
+      position,
+      id_card,
+      facebook,
+      twitter,
+      instagram,
+      linkedin,
+    } = req.body;
     if (req.file != undefined) {
       const name_img = req.file.originalname;
       var image = "/images/employees/" + name_img;

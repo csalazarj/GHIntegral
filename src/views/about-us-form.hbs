@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card shadow">
+            <div class="card-header">
+                <h3>Editar Contenido / Sección Nosotros</h3>
+                <div class="card-body">
+                <img src="{{aboutContent.image}}" class="card-img-top w-25 pb-4" alt="...">
+                    <form action="/users/edit-about-us/?_method=PUT" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_method" value="PUT">
+                        <div class="form-group">
+                            <input type="text" name="title" class="form-control" placeholder="Titulo" value="{{aboutContent.title}}" required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Ingrese portada de sección</label>
+                            <input type="file" class="form-control-file" name="img_file_about_us" id="exampleFormControlFile1">
+                        </div>
+                         <div class="form-group">
+                            <input type="text" name="subtitle" class="form-control" placeholder="Subtítulo" value="{{aboutContent.subtitle}}">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="mision" placeholder="Misión" rows="6"
+                                id="description_form_about_us" class="form-control">{{aboutContent.mision}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="vision" placeholder="Visión" rows="6"
+                                id="description_form_about_us" class="form-control" >{{aboutContent.vision}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description1" placeholder="Descripción Principal" rows="20"
+                                id="description_form_about_us" class="form-control" >{{aboutContent.description1}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="title2" class="form-control" placeholder="Título Nuestro Equipo" value="{{aboutContent.title2}}">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description2" placeholder="Descripción Nuestro Equipo" rows="10"
+                                id="description_form_article" class="form-control">{{aboutContent.description2}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block">
+                                Agregar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

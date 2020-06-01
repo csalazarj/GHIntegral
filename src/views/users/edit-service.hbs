@@ -6,7 +6,7 @@
             </div>
 
             <div class="card-body">
-                <img src="{{service.image}}" class="card-img-top w-50" alt="...">
+                <img src="{{service.image}}" class="card-img-top w-25" alt="...">
                 <form action="/users/edit-service/{{service._id}}?_method=PUT" method="POST"
                     enctype="multipart/form-data">
                     <input type="hidden" name="_method" value="PUT">
@@ -17,14 +17,14 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" name="title" class="form-control" value="{{service.title}}">
+                        <input type="text" name="title" class="form-control" value="{{service.title}}" required>
                     </div>
                     <div class="form-group">
                         <textarea name="introduction" placeholder="Introducción corta" rows="5"
-                            class="form-control">{{service.introduction}}</textarea>
+                            class="form-control" required>{{service.introduction}}</textarea>
                     </div>
                     <div class="form-group">
-                        <textarea name="description" class="form-control" rows="20">{{service.description}}</textarea>
+                        <textarea name="description" class="form-control" rows="20" required>{{service.description}}</textarea>
                     </div>
                     {{!-- <div class="form-group col-8">
                         <label for="inputState">Seleccione el link del Servicio: </label>

@@ -1,7 +1,7 @@
 const { Router } = require("express");
+const multer = require("multer");
 
 // Multer´s Services Index
-const multer = require("multer");
 const storageService = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "src/public/images/services_img/");
@@ -32,7 +32,7 @@ const storageAbout = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const uploadAbout = multer({ storage: storageEmployee });
+const uploadAbout = multer({ storage: storageAbout });
 
 const router = Router();
 

@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <form action="/users/add-service" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <input type="text" name="title" class="form-control" placeholder="Titulo" autofocus>
+                            <input type="text" name="title" class="form-control" placeholder="Titulo" autofocus required>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Ingrese portada del Servicio</label>
@@ -15,11 +15,11 @@
                         </div>
                         <div class="form-group">
                             <textarea name="introduction" placeholder="Introducción corta" rows="5"
-                                class="form-control"></textarea>
+                                class="form-control" required></textarea>
                         </div>
                         <div class="form-group">
                             <textarea name="description" placeholder="Descripción" rows="20" id="description_add"
-                                class="form-control"></textarea>
+                                class="form-control" required></textarea>
                         </div>
 
                         {{!-- <div class="form-group col-8">

@@ -85,7 +85,7 @@ userCtrl.renderServiceForm = async (req, res) => {
 
 userCtrl.createNewService = async (req, res) => {
   try {
-    const { title, introduction, description, route } = req.body;
+    const { title, introduction, description } = req.body;
     if (req.file != undefined) {
       const name = req.file.originalname;
       var image = "/images/services_img/" + name;
@@ -94,7 +94,6 @@ userCtrl.createNewService = async (req, res) => {
         introduction,
         description,
         image,
-        route,
       });
       await newService.save();
     } else {
@@ -102,7 +101,6 @@ userCtrl.createNewService = async (req, res) => {
         title,
         introduction,
         description,
-        route,
       });
       await newService.save();
     }
@@ -126,7 +124,7 @@ userCtrl.renderEditServiceForm = async (req, res) => {
 
 userCtrl.updateService = async (req, res) => {
   try {
-    const { title, introduction, description, route } = req.body;
+    const { title, introduction, description } = req.body;
     if (req.file != undefined) {
       const name = req.file.originalname;
       var image = "/images/services_img/" + name;
@@ -135,18 +133,16 @@ userCtrl.updateService = async (req, res) => {
         introduction,
         description,
         image,
-        route,
       });
     } else {
       await Service.findByIdAndUpdate(req.params.id, {
         title,
         introduction,
         description,
-        route,
       });
-      req.flash("success_msg", "Servicio editado exitosamente!!");
-      res.redirect("/users/index-admin");
     }
+    req.flash("success_msg", "Servicio editado exitosamente!!");
+    res.redirect("/users/index-admin");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }

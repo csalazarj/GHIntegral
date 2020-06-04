@@ -50,6 +50,11 @@ app.use(require("./routes/index.routes"));
 app.use(require("./routes/blog.routes"));
 app.use(require("./routes/users.routes"));
 
+// catch 404
+// app.use(function (req, res, next) {
+//   res.status(404).render("Error404");
+// });
+
 // Static files
 app.use(express.static(path.join(__dirname, "public")));
 

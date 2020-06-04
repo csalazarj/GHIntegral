@@ -37,6 +37,10 @@ indexCtrl.renderService = async (req, res) => {
   }
 };
 
+// indexCtrl.renderError = async (req, res) => {
+//   res.status(404).render("Error404");
+// };
+
 // indexCtrl.navigation = async (req,res)=>{
 //   const services = await Service.find().lean();
 //   res.render("partials/navigation", { services });

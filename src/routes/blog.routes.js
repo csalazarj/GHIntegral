@@ -42,7 +42,7 @@ router.post(
   createNewArticle
 );
 
-// edit articles
+// edit/update articles
 router.get("/blog/edit/:id", isAutenticated, renderEditForm);
 router.put(
   "/blog/edit/:id",

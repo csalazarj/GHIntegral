@@ -5,6 +5,7 @@ const {
   renderIndex,
   renderAbout,
   renderService,
+  renderError
   // renderS1,
   // renderS2,
   // renderS3,
@@ -19,7 +20,7 @@ const {
 router.get("/", renderIndex);
 router.get("/about-us", renderAbout);
 router.get("/service/:id", renderService);
-
+// router.get("/*", renderError)
 // router.get("/contact-us", renderContact);
 
 // Services routes

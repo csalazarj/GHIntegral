@@ -45,14 +45,7 @@
                 <a href="{{instagram}}" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="{{linkedin}}" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
-            <div class="border border-primary rounded d-flex justify-content-around p-2 mt-1">
-                <a href="/users/edit-employee/{{_id}}"><i class="fas fa-pencil-alt text-primary"></i></a>
-                <form action="/users/delete-employee/{{_id}}?_method=DELETE" method="POST"
-                    class="d-flex justify-content-center">
-                    <input type="hidden" name="__method" value="DELETE">
-                    <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
-                </form>
-            </div>
+            
         </div>
         {{/each}}
     </div>

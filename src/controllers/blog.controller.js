@@ -2,7 +2,7 @@ const blogCtrl = {};
 const Article = require("../models/Article");
 const Service = require("../models/Service");
 
-// Render Blog (Public/Admin)
+// Render Blog
 blogCtrl.renderBlog = async (req, res) => {
   try {
     const services = await Service.find().lean();
@@ -13,15 +13,6 @@ blogCtrl.renderBlog = async (req, res) => {
   }
 };
 
-blogCtrl.renderBlogAdmin = async (req, res) => {
-  try {
-    const services = await Service.find().lean();
-    const articles = await Article.find().lean().sort({ createdAt: "desc" });
-    res.render("blog/admin-articles", { articles, services });
-  } catch (error) {
-    res.status(500).send({ status: "ERROR", message: error.message });
-  }
-};
 
 // Render Article by Id
 blogCtrl.renderArticleById = async (req, res) => {
@@ -59,7 +50,7 @@ blogCtrl.createNewArticle = async (req, res) => {
     }
 
     req.flash("success_msg", "Articulo agregado exitosamente!!");
-    res.redirect("/blog/admin-articles");
+    res.redirect("/blog/articles");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -95,7 +86,7 @@ blogCtrl.updateArticle = async (req, res) => {
     }
 
     req.flash("success_msg", "Articulo editado exitosamente!!");
-    res.redirect("/blog/admin-articles");
+    res.redirect("/blog/articles");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -106,7 +97,7 @@ blogCtrl.deleteArticle = async (req, res) => {
   try {
     await Article.findByIdAndDelete(req.params.id);
     req.flash("success_msg", "Articulo eliminado exitosamente!!");
-    res.redirect("/blog/admin-articles");
+    res.redirect("/blog/articles");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }

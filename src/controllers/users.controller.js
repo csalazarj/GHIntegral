@@ -61,15 +61,15 @@ userCtrl.logout = (req, res) => {
   res.redirect("/");
 };
 
-userCtrl.renderIndexAdmin = async (req, res) => {
-  try {
-    const services = await Service.find().lean();
-    const articles = await Article.find().lean();
-    res.render("users/index-admin", { services, articles });
-  } catch (error) {
-    res.status(500).send({ status: "ERROR", message: error.message });
-  }
-};
+// userCtrl.renderIndexAdmin = async (req, res) => {
+//   try {
+//     const services = await Service.find().lean();
+//     const articles = await Article.find().lean();
+//     res.render("users/index-admin", { services, articles });
+//   } catch (error) {
+//     res.status(500).send({ status: "ERROR", message: error.message });
+//   }
+// };
 
 // -------------------------- SERVICES SECTION -----------------------------
 
@@ -105,7 +105,7 @@ userCtrl.createNewService = async (req, res) => {
       await newService.save();
     }
     req.flash("success_msg", "Servicio agregado exitosamente!!");
-    res.redirect("/users/index-admin");
+    res.redirect("/");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -142,7 +142,7 @@ userCtrl.updateService = async (req, res) => {
       });
     }
     req.flash("success_msg", "Servicio editado exitosamente!!");
-    res.redirect("/users/index-admin");
+    res.redirect("/");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -153,7 +153,7 @@ userCtrl.deleteService = async (req, res) => {
   try {
     await Service.findByIdAndDelete(req.params.id);
     req.flash("success_msg", "Servicio eliminado exitosamente!!");
-    res.redirect("/users/index-admin");
+    res.redirect("/");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -168,7 +168,7 @@ userCtrl.renderAboutUsAdmin = async (req, res) => {
     ).lean();
     const services = await Service.find().lean();
     const employees = await Employee.find().lean();
-    res.render("users/about-us-admin", { employees, services, aboutContent });
+    res.render("users/about-us", { employees, services, aboutContent });
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -222,7 +222,7 @@ userCtrl.editAbout = async (req, res) => {
       });
     }
     req.flash("success_msg", "Sección Nosotros actualizada exitosamente!!");
-    res.redirect("/users/about-us-admin");
+    res.redirect("/about-us");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -276,7 +276,7 @@ userCtrl.createNewEmployee = async (req, res) => {
       await newEmployee.save();
     }
     req.flash("success_msg", "Empleado agregado exitosamente!!");
-    res.redirect("/users/about-us-admin");
+    res.redirect("/about-us");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -319,7 +319,7 @@ userCtrl.updateEmployee = async (req, res) => {
       });
     }
     req.flash("success_msg", "Empleado editado exitosamente!!");
-    res.redirect("/users/about-us-admin");
+    res.redirect("/about-us");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }
@@ -330,7 +330,7 @@ userCtrl.deleteEmployee = async (req, res) => {
   try {
     await Employee.findByIdAndDelete(req.params.id);
     req.flash("success_msg", "Empleado eliminado exitosamente!!");
-    res.redirect("/users/about-us-admin");
+    res.redirect("/about-us");
   } catch (error) {
     res.status(500).send({ status: "ERROR", message: error.message });
   }

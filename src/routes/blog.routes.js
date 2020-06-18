@@ -15,7 +15,6 @@ const router = Router();
 const {
   renderArticleForm,
   renderBlog,
-  renderBlogAdmin,
   createNewArticle,
   renderEditForm,
   updateArticle,
@@ -27,7 +26,6 @@ const { isAutenticated } = require("../helpers/auth");
 
 // get all articles
 router.get("/blog", renderBlog);
-router.get("/blog/admin-articles", isAutenticated, renderBlogAdmin);
 
 // get article by id
 router.get("/blog/article/:id", renderArticleById);

@@ -24,11 +24,11 @@
                 <div class="card ">
                     <img src="{{image}}" class="card-img-top" alt="{{title}}">
                     <div class="card-body">
-                        {{#if ../user}}
-                        <h5 class="card-title text-uppercase">{{title}}
+                        <h5 class="card-title text-primary text-uppercase">{{title}}
+                            {{#if ../user}}
                             <a href="/users/edit-service/{{_id}}"><i class="fas fa-pencil-alt text-primary"></i></a>
+                            {{/if}}
                         </h5>
-                        {{/if}}
                         <p class="card-text">{{introduction}}</p>
                         <a href="/service/{{_id}}" class="btn btn-primary">Saber más</a>
 
@@ -75,7 +75,8 @@
                 <div class="carousel-item">
                     <a href="/blog/article/{{_id}}"><img src="{{images}}" class="d-block w-100" alt="{{title}}"></a>
                     <div class="carousel-caption d-none d-md-block">
-                        <a href="/blog/article/{{_id}}" class="text-decoration-none"> <span class="h3 text-white " style="position: relative;">{{title}}</span></a>
+                        <a href="/blog/article/{{_id}}" class="text-decoration-none"> <span class="h3 text-white "
+                                style="position: relative;">{{title}}</span></a>
                         {{!-- <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> --}}
                     </div>
                 </div>

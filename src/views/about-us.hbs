@@ -1,15 +1,19 @@
 <div class="row">
-    <div class="col-12 text-center bg-primary text-white py-3">
-        <h1>GH INTEGRAL S.A.S</h1>
+    <div class="col-12 text-center bg-primary text-white py-4">
+        <h1 class="h1">GH INTEGRAL S.A.S</h1>
+        {{#if user}}
+        <a href="/users/edit-about-us"><i class="fas fa-pencil-alt text-white h2"></i></a>
+        {{/if}}
+
     </div>
 </div>
 
 <article class="container-fluid mt-4">
     <div class="row mt-4 text-center ">
         <div class="col-12 col-xl-6 mb-md-5">
-            <h1 class="text-primary display-4">{{aboutContent.title}}</h1>
-            <img class="d-flex align-self-center mt-3 img-fluid mx-auto d-block w-75" id="image1" src="{{aboutContent.image}}"
-                alt="{{aboutContent.title}}">
+            {{!-- <h1 class="text-primary">{{aboutContent.title}}</h1> --}}
+            <img class="d-flex align-self-center mt-3 img-fluid mx-auto d-block w-75" id="image1"
+                src="{{aboutContent.image}}" alt="{{aboutContent.title}}">
 
         </div>
         <div class="col-12 col-xl-6">
@@ -45,7 +49,16 @@
                 <a href="{{instagram}}" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="{{linkedin}}" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
-            
+            {{#if ../user}}
+            <div class="border border-primary rounded d-flex justify-content-around p-2 mt-1">
+                <a href="/users/edit-employee/{{_id}}"><i class="fas fa-pencil-alt text-primary h3"></i></a>
+                <form action="/users/delete-employee/{{_id}}?_method=DELETE" method="POST"
+                    class="d-flex justify-content-center">
+                    <input type="hidden" name="__method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                </form>
+            </div>
+            {{/if}}
         </div>
         {{/each}}
     </div>

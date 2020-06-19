@@ -61,15 +61,6 @@ userCtrl.logout = (req, res) => {
   res.redirect("/");
 };
 
-// userCtrl.renderIndexAdmin = async (req, res) => {
-//   try {
-//     const services = await Service.find().lean();
-//     const articles = await Article.find().lean();
-//     res.render("users/index-admin", { services, articles });
-//   } catch (error) {
-//     res.status(500).send({ status: "ERROR", message: error.message });
-//   }
-// };
 
 // -------------------------- SERVICES SECTION -----------------------------
 
@@ -161,18 +152,6 @@ userCtrl.deleteService = async (req, res) => {
 
 // -------------------------- ABOUT US / EMPLOYEES SECTION -----------------------------
 
-userCtrl.renderAboutUsAdmin = async (req, res) => {
-  try {
-    const aboutContent = await About.findById(
-      "5ed32e209d71ae447832f876"
-    ).lean();
-    const services = await Service.find().lean();
-    const employees = await Employee.find().lean();
-    res.render("users/about-us", { employees, services, aboutContent });
-  } catch (error) {
-    res.status(500).send({ status: "ERROR", message: error.message });
-  }
-};
 
 userCtrl.renderAboutForm = async (req, res) => {
   try {

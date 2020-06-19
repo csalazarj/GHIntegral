@@ -41,45 +41,4 @@ indexCtrl.renderService = async (req, res) => {
 //   res.status(404).render("Error404");
 // };
 
-// indexCtrl.navigation = async (req,res)=>{
-//   const services = await Service.find().lean();
-//   res.render("partials/navigation", { services });
-// }
-
-// indexCtrl.renderContact = (req, res) => {
-//   res.render("contact-us");
-// };
-
-// indexCtrl.renderS1 = (req, res) => {
-//   res.render("services/asistencia-contable");
-// };
-
-// indexCtrl.renderS2 = (req, res) => {
-//   res.render("services/asistencia-juridica");
-// };
-
-// indexCtrl.renderS3 = (req, res) => {
-//   res.render("services/auditorias-sg-sst");
-// };
-
-// indexCtrl.renderS4 = (req, res) => {
-//   res.render("services/gestion-humana");
-// };
-
-// indexCtrl.renderS5 = (req, res) => {
-//   res.render("services/riesgo-psicosocial");
-// };
-
-// indexCtrl.renderS6 = (req, res) => {
-//   res.render("services/seguridad-vial");
-// };
-
-// indexCtrl.renderS7 = (req, res) => {
-//   res.render("services/seguridad-y-salud");
-// };
-
-// indexCtrl.renderS8 = (req, res) => {
-//   res.render("services/seleccion-personal");
-// };
-
 module.exports = indexCtrl;

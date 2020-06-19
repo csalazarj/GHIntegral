@@ -43,12 +43,10 @@ const {
   renderSignUpForm,
   signUp,
   renderServiceForm,
-  // renderIndexAdmin,
   createNewService,
   renderEditServiceForm,
   updateService,
   deleteService,
-  // renderAboutUsAdmin,
   renderEmployeeForm,
   createNewEmployee,
   renderEditEmployeeForm,
@@ -73,8 +71,6 @@ router.get("/users/logout", isAutenticated, logout);
 
 // -------------------------- SERVICES SECTION -----------------------------
 
-// router.get("/users/index-admin", isAutenticated, renderIndexAdmin);
-
 // Add service to Index
 router.get("/users/add-service", isAutenticated, renderServiceForm);
 router.post(
@@ -97,8 +93,6 @@ router.put(
 router.delete("/users/delete-service/:id", isAutenticated, deleteService);
 
 // -------------------------- ABOUT US / EMPLOYEES SECTION -----------------------------
-
-// router.get("/users/about-us-admin", isAutenticated, renderAboutUsAdmin);
 
 router.get("/users/edit-about-us", isAutenticated, renderAboutForm);
 router.put(
